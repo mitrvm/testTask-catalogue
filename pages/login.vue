@@ -13,12 +13,16 @@ const password = ref("");
 const error = ref("");
 const loading = ref(false);
 
+interface LoginResponse {
+	token: string;
+}
+
 async function submit() {
 	error.value = "";
 	loading.value = true;
 
 	try {
-		const { data, error: fetchError } = await useFetch(
+		const { data, error: fetchError } = await useFetch<LoginResponse>(
 			"https://fakestoreapi.com/auth/login",
 			{
 				method: "POST",

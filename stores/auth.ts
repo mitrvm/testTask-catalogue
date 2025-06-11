@@ -1,12 +1,16 @@
 import { defineStore } from "pinia";
 
+interface AuthState {
+	token: string | null;
+}
+
 export const useAuthStore = defineStore("auth", {
-	state: () => ({
-		token: "",
+	state: (): AuthState => ({
+		token: null,
 	}),
 
 	actions: {
-		setToken(token: string) {
+		setToken(token: string | null) {
 			this.token = token;
 			const cookie = useCookie("auth_token");
 			cookie.value = token;

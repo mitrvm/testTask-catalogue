@@ -4,6 +4,19 @@ import { useRoute } from "vue-router";
 import { useToast } from "vue-toastification";
 import { ContentLoader } from "vue-content-loader";
 
+interface Product {
+	id: number;
+	title: string;
+	price: number;
+	description: string;
+	category: string;
+	image: string;
+	rating: {
+		rate: number;
+		count: number;
+	};
+}
+
 definePageMeta({
 	middleware: ["auth"],
 });
@@ -16,7 +29,7 @@ onMounted(async () => {
 	try {
 		// Искусственная задержка для отладки skeleton
 		await new Promise((resolve) => setTimeout(resolve, 1000));
-		const { data, error: fetchError } = await useFetch(
+		const { data, error: fetchError } = await useFetch<Product>(
 			`https://fakestoreapi.com/products/${route.params.id}`,
 			{
 				key: `product-${route.params.id}`,
@@ -26,13 +39,13 @@ onMounted(async () => {
 		if (fetchError.value) {
 			toast.error("Не удалось загрузить товар. Пожалуйста, попробуйте позже.");
 		}
-		product.value = data.value;
+		product.value = data.value as Product;
 	} finally {
 		loading.value = false;
 	}
 });
 
-const product = ref(null);
+const product = ref<Product>({} as Product);
 
 const quantity = ref(1);
 const isAdded = ref(false);

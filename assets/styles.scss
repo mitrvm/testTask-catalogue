@@ -1,3 +1,153 @@
-$primary-color: #0066ff;
-$text-color: #333;
-$mobile-breakpoint: 650px;
+@font-face {
+	font-family: "Geoolgica";
+	src: url("/fonts/geoolgica.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Helvetica";
+	src: url("/fonts/helvetica.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Helvetica";
+	src: url("/fonts/helvetica-bold.ttf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Helvetica";
+	src: url("/fonts/helvetica-light.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+}
+
+:root {
+	--primary: #2563eb;
+	--primary-hover: #1d4ed8;
+	--secondary: #64748b;
+	--secondary-hover: #475569;
+	--background: #ffffff;
+	--background-alt: #f8fafc;
+	--text: #1e293b;
+	--text-light: #64748b;
+	--border: #e2e8f0;
+	--error: #ef4444;
+	--success: #22c55e;
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+body {
+	font-family: "Helvetica", sans-serif;
+	color: var(--text);
+	background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Geoolgica", sans-serif;
+	color: var(--text);
+}
+
+.font-bold {
+	font-family: "Helvetica", sans-serif;
+	font-weight: bold;
+}
+
+.font-light {
+	font-family: "Helvetica", sans-serif;
+	font-weight: 300;
+}
+
+.btn {
+	background-color: var(--primary);
+	color: white;
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.375rem;
+	font-weight: 500;
+	transition: all 0.2s ease;
+	box-shadow: var(--shadow-sm);
+
+	&:hover {
+		background-color: var(--primary-hover);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+		transform: none;
+		box-shadow: none;
+	}
+}
+
+.card {
+	background-color: var(--background);
+	border: 1px solid var(--border);
+	border-radius: 0.5rem;
+	transition: all 0.2s ease;
+	box-shadow: var(--shadow);
+
+	&:hover {
+		box-shadow: var(--shadow-md);
+	}
+}
+
+.input {
+	border: 1px solid var(--border);
+	border-radius: 0.375rem;
+	padding: 0.75rem;
+	transition: all 0.2s ease;
+	background-color: var(--background);
+	width: 100%;
+
+	&:focus {
+		outline: none;
+		border-color: var(--primary);
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+	}
+
+	&:disabled {
+		background-color: var(--background-alt);
+		cursor: not-allowed;
+	}
+}
+
+.text-link {
+	color: var(--primary);
+	transition: color 0.2s ease;
+
+	&:hover {
+		color: var(--primary-hover);
+	}
+}
+
+.vue-content-loader {
+	background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+	background-size: 200% 100%;
+	animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
